@@ -24,7 +24,9 @@ open class Pokemon (protected var name:String = "pok",
 
     fun sayHi() { makeText(maincontext, "Hola!!! Soy $name", Toast.LENGTH_LONG).show() }
 
-    fun cure(){this.life = 100f}
+    fun cure(){this.life = 100f
+        this.thanksCure()
+    }
     fun evolve (n: String){
         this.name = n
         this.attackPower *= 1.20f
@@ -33,7 +35,7 @@ open class Pokemon (protected var name:String = "pok",
     open fun attack(){ makeText(maincontext, "Al ataque", Toast.LENGTH_LONG).show() }
 }
 
-class Waterpokemon(n:String = "pok", aP: Float = 30f, l:Float = 100f): Pokemon(n, aP, l){
+class Waterpokemon(n:String = "pok", aP: Float = 30f, l:Float = 100f): Pokemon(n, aP, l), sayBay{
     private var maxResistence: Int = 500
     private var submergedTime: Int = 0
 
@@ -57,7 +59,7 @@ class Waterpokemon(n:String = "pok", aP: Float = 30f, l:Float = 100f): Pokemon(n
     }
 }
 
-class Firepokemon(n: String = "pok", aP: Float = 30f, l: Float = 100f): Pokemon(n, aP, l){
+class Firepokemon(n: String = "pok", aP: Float = 30f, l: Float = 100f): Pokemon(n, aP, l), sayBay{
     private var ballTemperature: Int = 90
     @SuppressLint("NotConstructor")
     fun Firepokemon(n: String, aP: Float, bT: Int){
@@ -74,7 +76,7 @@ class Firepokemon(n: String = "pok", aP: Float = 30f, l: Float = 100f): Pokemon(
     }
 }
 
-class Earthpokemon(n: String = "pok", aP: Float = 30f, l:Float = 100f): Pokemon(n, aP, l){
+class Earthpokemon(n: String = "pok", aP: Float = 30f, l:Float = 100f): Pokemon(n, aP, l), sayBay{
     private var depth: Int = 150
 
     @SuppressLint("NotConstructor")
@@ -91,10 +93,16 @@ class Earthpokemon(n: String = "pok", aP: Float = 30f, l:Float = 100f): Pokemon(
     }
 
     override fun attack() {
-        super.attack()
+        Toast.makeText(maincontext, "Ataque con piedras", Toast.LENGTH_SHORT).show()
     }
 }
 
 abstract class thanks(){
     fun thanksCure(){ Toast.makeText(maincontext,"Gracias por curarme!", Toast.LENGTH_LONG).show()}
+}
+
+interface sayBay {
+    fun sayBay() {
+        Toast.makeText(maincontext, "ByeBye!", Toast.LENGTH_SHORT).show()
+    }
 }

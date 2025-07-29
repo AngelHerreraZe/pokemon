@@ -185,6 +185,11 @@ class MainActivity : AppCompatActivity() {
         var tvEarthPokemon = findViewById<TextView>(R.id.tvEarthPokemon)
         loadDataPokemon(tvEarthPokemon, earthPok)
     }
+
+    fun sayByeEarthPokemon(v: View){
+        earthPok.sayBay()
+    }
+
     private fun fight(p1: Pokemon, p2: Pokemon){
         var emtLog = findViewById<EditText>(R.id.emtLog)
         emtLog.setText("")
